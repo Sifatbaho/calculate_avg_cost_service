@@ -1,0 +1,9 @@
+services:
+  avg_service:
+    build: .
+    container_name: avg_service
+    ports:
+      - "50051:50051"
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
