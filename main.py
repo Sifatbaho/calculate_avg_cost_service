@@ -1,7 +1,7 @@
 import grpc
 from concurrent import futures
 from generated import auto_pb2_grpc
-from service import AutoAvgServicer
+from services.auto import AutoAvgServicer
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
