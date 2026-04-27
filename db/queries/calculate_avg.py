@@ -16,7 +16,6 @@ def get_ads_with_avg_price(
 ):
     conn, cur = get_cursor()
 
-    COMPLICATION_FIELD_ID = 42
 
     conditions = ["1=1", "a.ad_type = 'AUTO'"]
     params = []
