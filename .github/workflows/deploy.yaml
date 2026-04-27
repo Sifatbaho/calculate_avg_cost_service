@@ -41,10 +41,7 @@ jobs:
 
             echo "🚀 Starting services..."
             docker compose up -d
-
-            echo "📦 Running migrations..."
-            docker compose exec -T web python manage.py migrate --noinput
-
+            
             echo "🧹 Cleaning up old images..."
             docker image prune -f
 
