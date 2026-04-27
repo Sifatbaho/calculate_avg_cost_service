@@ -16,7 +16,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_KEY }}
           debug: true
-          port: 22
+          port: 2222
           script: |
             echo "Connecting successfully applied"
 
@@ -27,7 +27,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_KEY }}
           debug: true
-          port: 22
+          port: 2222
           script: |
             set -e
 
