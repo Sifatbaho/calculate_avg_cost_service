@@ -34,7 +34,7 @@ jobs:
             cd ${{ secrets.PROJECT_PATH }}
 
             echo "⬇️ Pulling latest code..."
-            git pull origin test
+            git pull origin main
 
             echo "🔨 Building new image..."
             docker compose build
