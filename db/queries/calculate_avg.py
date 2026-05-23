@@ -1,4 +1,7 @@
+from decouple import config
 from db.connection import get_cursor
+
+COMPLICATION_FIELD_ID = config('COMPLICATION_FIELD_ID', default='complication')
 
 def get_ads_with_avg_price(
     brand=None,
@@ -16,7 +19,18 @@ def get_ads_with_avg_price(
 ):
     conn, cur = get_cursor()
 
+    try:
+        return _execute_query(conn, cur, brand, model, condition, manufacture_year,
+                              mileage, color, complication, region, district,
+                              category, date_from, date_to)
+    finally:
+        cur.close()
+        conn.close()
 
+
+def _execute_query(conn, cur, brand, model, condition, manufacture_year,
+                   mileage, color, complication, region, district,
+                   category, date_from, date_to):
     conditions = ["1=1", "a.ad_type = 'AUTO'"]
     params = []
 
@@ -136,13 +150,11 @@ def get_ads_with_avg_price(
             vd.year, vd.mileage, vd.vehicle_color,
             vc.name
         ORDER BY a.created_at DESC
+        LIMIT 100
     """
 
     cur.execute(query, params)
     rows = cur.fetchall()
-
-    cur.close()
-    conn.close()
 
     if not rows:
         return {"avg_price": 0.0, "total_count": 0, "listings": []}

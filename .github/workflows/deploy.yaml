@@ -16,7 +16,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_KEY }}
           debug: true
-          port: 2222
+          port: 22
           script: |
             echo "Connecting successfully applied"
 
@@ -27,7 +27,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_KEY }}
           debug: true
-          port: 2222
+          port: 22
           script: |
             set -e
 
@@ -41,7 +41,7 @@ jobs:
 
             echo "🚀 Starting services..."
             docker compose up -d
-            
+
             echo "🧹 Cleaning up old images..."
             docker image prune -f
 

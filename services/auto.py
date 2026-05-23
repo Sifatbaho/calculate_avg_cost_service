@@ -7,11 +7,15 @@ from db.queries.calculate_avg import get_ads_with_avg_price
 
 class AutoAvgServicer(auto_pb2_grpc.AutoAvgCostServiceServicer):
     def AutoAvgCost(self, request, context):
+        manufacture_year = None
+        if request.manufacture_date and request.manufacture_date.seconds:
+            manufacture_year = request.manufacture_date.ToDatetime().year
+
         result = get_ads_with_avg_price(
             brand=request.brand or None,
             model=request.model or None,
             condition=request.condition or None,
-            manufacture_year=request.manufacture_date or None,
+            manufacture_year=manufacture_year,
             mileage=request.distance_covered or None,
             color=request.color or None,
             complication=request.complication or None,
